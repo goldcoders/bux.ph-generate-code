@@ -1,0 +1,12 @@
+[build]
+  functions = "functions"
+  command = "#"
+[template.environment]
+  BUX_BASE_URL = "https://api.bux.ph/v1/api"
+  BUX_API_KEY = "Bux Api Key"
+  BUX_CLIENT_ID = "Bux Client ID"
+  BUX_API_SECRET = "Bux Api Secret"
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

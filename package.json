@@ -1,0 +1,17 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "netlify function typescript template",
+  "author": "Goldcoders Corp.",
+  "license": "ISC",
+  "dependencies": {
+    "@netlify/functions": "^0.7.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^15.12.2",
+    "@types/node-fetch": "^2.5.10",
+    "@types/uuid": "^8.3.0",
+    "dotenv": "^10.0.0",
+    "node-fetch": "^2.6.1",
+    "uuid": "^8.3.2"
+  }
+}
