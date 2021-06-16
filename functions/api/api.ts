@@ -1,18 +1,14 @@
 
 import { Handler, HandlerContext, HandlerEvent } from "@netlify/functions";
 import fetch from 'node-fetch';
-import { v4 as uuidv4 } from 'uuid';
 import { BUX_API_KEY, BUX_BASE_URL, BUX_CLIENT_ID, BUX_NOTIFY_URL, BUX_REDIRECT_URL, SITE_DOMAIN } from "./env-check";
 import { bodyInterface } from "./interface/body";
 import { Channels } from "./interface/channels";
 import { HttpMethods } from "./interface/methods";
 
-
 const apiURL = `${BUX_BASE_URL}/generate_code`
 
-
 const handler: Handler = async (event:HandlerEvent, context:HandlerContext ) => {
-  
     
   if (event.httpMethod !== "POST") {
     return {
@@ -45,6 +41,7 @@ const handler: Handler = async (event:HandlerEvent, context:HandlerContext ) => 
   type Channel = keyof typeof Channels;
   
   const {
+    req_id,
     amount, 
     description, 
     email,
@@ -54,7 +51,8 @@ const handler: Handler = async (event:HandlerEvent, context:HandlerContext ) => 
     param1 = '',
     param2 = ''
   } : 
-  {
+  { 
+    req_id: string,
     amount: number, 
     description: string , 
     email: string, 
@@ -65,7 +63,7 @@ const handler: Handler = async (event:HandlerEvent, context:HandlerContext ) => 
     param2: string
   } = params;
 
-  if (!amount || !description || !email || !contact||!name||!channel) {
+  if (!req_id || !amount || !description || !email || !contact||!name||!channel) {
     let error = {
       statusCode: 422,
       body: `Validation Error: amount: ${amount}, description: ${description}, email: ${email}, contact: ${contact}, name: ${name}, channel: ${channel}`,
@@ -74,11 +72,11 @@ const handler: Handler = async (event:HandlerEvent, context:HandlerContext ) => 
   }
  
   const body: bodyInterface = {
-    "req_id": uuidv4(),
+    "req_id": req_id,
     "client_id": `${BUX_CLIENT_ID}`,
     "amount": amount,
     "description": description,
-    "expiry": 2,
+    "expiry": 12,
     "email": email,
     "contact": contact,
     "name": name,

@@ -1,8 +1,4 @@
-// TODO: Update Your Payload Scheme For API
-
 import { Channels } from "./channels";
-
-// TODO: channel enum
 export interface bodyInterface {
     req_id: string
     client_id: string
