@@ -2,9 +2,12 @@
   functions = "functions"
   command = "#"
 [template.environment]
+  SITE_DOMAIN = "Your Domain Name"
   BUX_BASE_URL = "https://api.bux.ph/v1/api"
   BUX_API_KEY = "Bux Api Key"
   BUX_CLIENT_ID = "Bux Client ID"
+  BUX_NOTIFY_URL = "Bux Notify URL"
+  BUX_REDIRECT_URL = "Bux Redirect URL"
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/:splat"
